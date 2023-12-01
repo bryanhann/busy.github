@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+
+from mygithub.constants import USER, GITHUB
+
+for repo in USER.get_repos():
+    print(repo.name)
+
+GITHUB.close()

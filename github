@@ -1,0 +1,22 @@
+#!/bin/bash
+THIS=${0##*/}
+BIN=$(dirname $(readlink $0))/bin
+export PYTHONPATH=$BIN/lib:${PYTHONPATH}
+
+:check_token () {
+    [ ! ${BRYAN_CRED_GITHUB_CLASSIC_TOKEN} == "" ] && return
+    echo "[github]: Error: \$BRYAN_CRED_GITHUB_CLASSIC_TOKEN is unset."
+    return 1
+}
+
+[ -f $BIN/$1 ] && {
+    :check_token || return 1
+    $BIN/"$@"
+    exit $?
+}
+echo usage:
+for file in $(ls $BIN/*); do
+    [ ! -f  $file ] && continue
+    echo "    github ${file##*/}"
+done
+:check_token

@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+
+import sys
+
+from mygithub.constants import USER, GITHUB
+
+REPO_NAME=sys.argv[1]
+
+print( f"About to create new github repo [{REPO_NAME}]" )
+input( "Press ENTER to continue" )
+input( "Press ENTER to continue" )
+input( "Press ENTER to continue" )
+
+repo = USER.create_repo(REPO_NAME)
+print(repo)
+
+GITHUB.close()
